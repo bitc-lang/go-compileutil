@@ -10,7 +10,7 @@ The main packages here are:
 
 - `reader` - Support for low-level source file I/O, including condensed position
   tracking.
-- `indentedWriter` - An implementation of `io.Writer` that facilitates proper
+- `indentedwriter` - An implementation of `io.Writer` that facilitates proper
   output indentation.
 - `intern` - A package that maps byte sequences into unique instances, mildly
   specialized for common cases of symbol names found in compilation units.
