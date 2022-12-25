@@ -34,7 +34,11 @@ import (
 	"os"
 	"sort"
 	"strings"
+
+	"github.com/jsshapiro/go-compileutil/position"
 )
+
+type Position position.Position
 
 type DiagKind int
 
@@ -149,7 +153,7 @@ func New() Diags {
 }
 
 // Add a diagnostic with the specified location, severity, and message payload
-func (c Diags) Add(where fmt.Stringer, kind DiagKind, msg string) {
+func (c Diags) Add(where Position, kind DiagKind, msg string) Diags {
 	diag := &diag{Pos: where.String(), Kind: kind, Message: msg}
 	c.diags = append(c.diags, diag)
 	switch kind {
@@ -159,29 +163,31 @@ func (c Diags) Add(where fmt.Stringer, kind DiagKind, msg string) {
 		fmt.Fprintln(os.Stderr, diag.String())
 		os.Exit(-1)
 	}
+
+	return c
 }
 
 // Issue a fatal diagnostic giving the specified location and message.
-func (c Diags) AddFatal(where fmt.Stringer, msg string) {
-	c.Add(where, Fatal, msg)
+func (c Diags) AddFatal(where Position, msg string) Diags {
+	return c.Add(where, Fatal, msg)
 }
 
 // Record an error diagnostic at the specified location with the provided
 // message.
-func (c Diags) AddError(where fmt.Stringer, msg string) {
-	c.Add(where, Error, msg)
+func (c Diags) AddError(where Position, msg string) Diags {
+	return c.Add(where, Error, msg)
 }
 
 // Record a warning diagnostic at the specified location with the provided
 // message.
-func (c Diags) AddWarn(where fmt.Stringer, msg string) {
-	c.Add(where, Warning, msg)
+func (c Diags) AddWarn(where Position, msg string) Diags {
+	return c.Add(where, Warning, msg)
 }
 
 // Record an informational diagnostic at the specified location with the
 // provided message.
-func (c Diags) AddInfo(where fmt.Stringer, msg string) {
-	c.Add(where, Info, msg)
+func (c Diags) AddInfo(where Position, msg string) Diags {
+	return c.Add(where, Info, msg)
 }
 
 // Return a fresh diagnostic group combining the diagnostics of two existing
