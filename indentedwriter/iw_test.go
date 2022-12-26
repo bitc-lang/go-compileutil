@@ -6,7 +6,6 @@ package indentedwriter
 
 import (
 	"bytes"
-	"fmt"
 	"testing"
 )
 
@@ -31,7 +30,6 @@ func TestMultiIndent(t *testing.T) {
 
 	iw.Println("Unindented again")
 
-	fmt.Print(check1)
 	if buf.String() != check1 {
 		t.Fatalf("Indented string mismatch on check1")
 	}
