@@ -79,7 +79,7 @@ type Diags = *diags // Export as a heap-allocated type
 
 // Return a string represnting a specific diagnostic message.
 func (d Diag) String() string {
-	return fmt.Sprintf("%s: %s %s", d.Pos, d.Kind, d.Message)
+	return fmt.Sprintf("%s: %s: %s", d.Pos, d.Kind, d.Message)
 }
 
 // Return a string containing all diagnostics in the diagnostic group, sorted
