@@ -3,7 +3,7 @@
 // Use of this source code is governed by terms that can be
 // found in the LICENSE file.
 
-// Abstraction of a position for use by consumers.
+// Abstraction of a position for use by consumers, with a basic implementation.
 //
 // This interface intentionally makes no provision for updating the position.
 // If it did, compiler implementations would incur two forms of overhead:
