@@ -128,7 +128,7 @@ func defaultSort(d []Diag) []Diag {
 		if d1.Pos < d2.Pos {
 			return true
 		}
-		// Positions are equal
+		// Positions are equal = sort further by severity
 		if d1.Kind > d2.Kind {
 			return false
 		}
