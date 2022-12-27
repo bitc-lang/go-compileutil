@@ -25,4 +25,6 @@ The main packages here are:
   helpful if you want to write tests that source input files from the tree and
   have them work under the various different testing tools.
 
-
+The principal documentation for these packages is the go documentation, which
+can be browsed online at
+[pkg.go.com](https://pkg.go.dev/github.com/bitc-lang/go-compileutil).

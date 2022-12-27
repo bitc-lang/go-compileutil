@@ -21,11 +21,20 @@ type Offset int
 // This is not as condensed as the Go tokenizer version, but the Go version
 // cannot support multiple interactive streams in its current form.
 //
-// NOTE(shap): It woould be possible to migrate Pos values to an int64
-// representation in source-compatible way via an implementation closer to the
-// Go tokenizer. This would reduce storage requirements in 64 bit compilers, but
-// it seems unlikely that position management will be the bottleneck in a
-// compiler that is required to process more than 2^31 bytes of input.
+// # ⚠ Caution
+//
+// This implementation is provisional, and probably should not be adopted by
+// other parties. The Pos type is exported for efficiency reasons, and a better
+// implementation is coming. The reason I did not adopt a design more similar to
+// the Go tokenizer position manager is that I wanted to be able to support
+// input and position tracking for multiple interactive streams. I have since
+// realized that expanding the Go-style single integer Pos values to int64 would
+// allow this, with the caveat that we would need to set an upper bound (say
+// 2GB) on total input length for any given unit of compilation.
+//
+// That implementation would be both more compact nad more efficient than this
+// one, and I will probably migrate. The resulting Pos value will be source
+// compatible but not binary compatible.
 type Pos struct {
 	input Reader
 	off   Offset
