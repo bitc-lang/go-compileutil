@@ -46,6 +46,9 @@ type Reader interface {
 	// number of bytes read so far, this operation will block for input.
 	ByteAt(o Offset) (byte, error)
 
+	// Return the byte slice covering the range [begin, end)
+	Content(begin, end Offset) ([]byte, error)
+
 	// Get the byte at the current offset without advancing the position.
 	//
 	// If the input unit is a stream, and the current position exceeds the
@@ -196,6 +199,22 @@ func (r *reader) ByteAt(o Offset) (byte, error) {
 
 }
 
+// Return the byte slice covering the range [begin, end)
+func (r *reader) Content(begin, end Offset) ([]byte, error) {
+	if err := r.expandTo(end); err != nil {
+		return nil, err
+	}
+
+	if int(end) >= len(r.content) {
+		return nil, io.EOF
+	}
+
+	// if expandTo returned no error, we have enough room in r.content to fetch
+	// the byte.
+	return r.content[begin:end], nil
+
+}
+
 func (r reader) IsAtEOI() bool {
 	return r.err != nil
 }
@@ -318,14 +337,6 @@ func (r *reader) updateLines() {
 		}
 	}
 	r.updatedTo = Offset(len(r.content))
-}
-
-func (r *reader) AddContent(bytes []byte) {
-	mu.Lock()
-	defer mu.Unlock()
-
-	r.content = append(r.content, bytes...)
-	r.updateLines()
 }
 
 func setReaderAttrs(name string, r *reader) error {
