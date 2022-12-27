@@ -3,6 +3,8 @@
 // Use of this source code is governed by terms that can be
 // found in the LICENSE file.
 
+// Package reader provides byte-level I/O and position tracking for compilers
+// and interpreters, including backtracking support.
 package reader
 
 import (
