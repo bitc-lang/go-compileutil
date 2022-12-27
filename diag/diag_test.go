@@ -7,7 +7,7 @@ package diag
 import (
 	"testing"
 
-	"github.com/jsshapiro/go-compileutil/position"
+	"github.com/bitc-lang/go-compileutil/position"
 )
 
 const basicString = `x:1:2: Warning: Danger, Will Robinson!

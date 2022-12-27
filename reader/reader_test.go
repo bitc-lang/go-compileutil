@@ -10,7 +10,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/jsshapiro/go-compileutil/testing_cwd"
+	"github.com/bitc-lang/go-compileutil/testing_cwd"
 )
 
 type Dummy = testing_cwd.Dummy

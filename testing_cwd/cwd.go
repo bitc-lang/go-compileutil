@@ -3,7 +3,7 @@
 //
 // Recommended usage:
 //
-//	import "github.com/jsshapiro/go-compileutil/testing_cwd"
+//	import "github.com/bitc-lang/go-compileutil/testing_cwd"
 //
 //	type Dummy = testing_cwd.Dummy
 //

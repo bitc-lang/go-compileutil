@@ -14,7 +14,7 @@ import (
 	"sort"
 	"sync"
 
-	"github.com/jsshapiro/go-compileutil/position"
+	"github.com/bitc-lang/go-compileutil/position"
 )
 
 // A Reader represents an input unit of compilation.

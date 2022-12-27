@@ -35,7 +35,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/jsshapiro/go-compileutil/position"
+	"github.com/bitc-lang/go-compileutil/position"
 )
 
 type Position position.Position

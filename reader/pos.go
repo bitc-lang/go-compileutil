@@ -6,7 +6,7 @@
 package reader
 
 import (
-	"github.com/jsshapiro/go-compileutil/position"
+	"github.com/bitc-lang/go-compileutil/position"
 )
 
 // An offset within an input stream.
